@@ -1,9 +1,360 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0" version="29.6.0">
-  <diagram name="第 1 页" id="1QKX4nNtk9KDV8WfmeQs">
-    <mxGraphModel>
+<mxfile host="app.diagrams.net" modified="2024-01-15T00:00:00.000Z" agent="Mozilla/5.0" version="22.1.0" type="device">
+  <diagram name="工业听诊智能监测算法框架" id="flowchart">
+    <mxGraphModel dx="2000" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1600" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="工业听诊智能监测算法框架" style="swimlane;horizontal=0;fillColor=#1f77b7;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;spacingTop=10;spacingLeft=30;spacingRight=30;strokeColor=#1f77b7;fontColor=#FFFFFF;swimlaneFillColor=#1f77b7;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="2400" height="60" as="geometry" />
+        </mxCell>
+ 
+        <!-- 1. 音频数据采集 -->
+        <mxCell id="step1_title" value="1. 音频数据采集" style="swimlane;horizontal=0;fillColor=#d9edf7;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#31708f;" parent="1" vertex="1">
+          <mxGeometry x="0" y="60" width="2400" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="detector1" value="探测器01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9edf7;strokeColor=#31708f;align=center;" parent="1" vertex="1">
+          <mxGeometry x="40" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="detector2" value="探测器02" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9edf7;strokeColor=#31708f;align=center;" parent="1" vertex="1">
+          <mxGeometry x="180" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="detectorN" value="探测器0N" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9edf7;strokeColor=#31708f;align=center;" parent="1" vertex="1">
+          <mxGeometry x="320" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="detector_ellipsis" value="..." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="460" y="140" width="30" height="40" as="geometry" />
+        </mxCell>
+ 
+        <!-- 箭头到预处理 -->
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;fillColor=#333333;" edge="1" parent="1" source="detectorN" target="step2_title">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 2. 音频预处理 -->
+        <mxCell id="step2_title" value="2. 音频预处理" style="swimlane;horizontal=0;fillColor=#dff0d8;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#3c763d;" parent="1" vertex="1">
+          <mxGeometry x="0" y="200" width="2400" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="preprocess" value="• 降噪处理&#xa;• 分帧 + 加窗&#xa;• 短时傅里叶变换(STFT)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff0d8;strokeColor=#3c763d;align=left;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="270" width="200" height="70" as="geometry" />
+        </mxCell>
+ 
+        <!-- 箭头分支 -->
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;fillColor=#333333;" edge="1" parent="1" source="preprocess" target="step3_title">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 3. 传统信号幅值判断 -->
+        <mxCell id="step3_title" value="3. 传统信号幅值判断" style="swimlane;horizontal=0;fillColor=#fcf8e3;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#8a6d3b;" parent="1" vertex="1">
+          <mxGeometry x="0" y="360" width="800" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="amplitude_calc" value="计算RMS/峰值/峰峰值" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcf8e3;strokeColor=#8a6d3b;align=center;" parent="1" vertex="1">
+          <mxGeometry x="40" y="430" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="amplitude_compare" value="与幅度阈值比较" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fcf8e3;strokeColor=#8a6d3b;align=center;" parent="1" vertex="1">
+          <mxGeometry x="260" y="420" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="amplitude_filter" value="过滤安静/未运行工况" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcf8e3;strokeColor=#8a6d3b;align=center;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="400" y="430" width="180" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="amplitude_result" value="传统幅值判断结果&#xa;□ 异常  □ 正常  □ 无效" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcf8e3;strokeColor=#8a6d3b;align=center;" parent="1" vertex="1">
+          <mxGeometry x="620" y="430" width="160" height="50" as="geometry" />
+        </mxCell>
+ 
+        <!-- 连接线 -->
+        <mxCell id="arrow3a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="amplitude_calc" target="amplitude_compare">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="amplitude_compare" target="amplitude_filter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="amplitude_filter" target="amplitude_result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 4. AI单分类异常检测 -->
+        <mxCell id="step4_title" value="4. AI单分类异常检测" style="swimlane;horizontal=0;fillColor=#f2dede;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#a94442;" parent="1" vertex="1">
+          <mxGeometry x="800" y="360" width="800" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ai_model" value="单分类模型&#xa;(自编码器/Isolation Forest/One-Class SVM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2dede;strokeColor=#a94442;align=center;" parent="1" vertex="1">
+          <mxGeometry x="840" y="430" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_score" value="输出异常分数&#xa;(0~1)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2dede;strokeColor=#a94442;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="430" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_compare" value="与置信度阈值比较" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f2dede;strokeColor=#a94442;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1260" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_result" value="AI异常检测结果&#xa;□ 异常  □ 正常" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2dede;strokeColor=#a94442;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1420" y="430" width="160" height="50" as="geometry" />
+        </mxCell>
+ 
+        <!-- 连接线 -->
+        <mxCell id="arrow4a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="ai_model" target="ai_score">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="ai_score" target="ai_compare">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="ai_compare" target="ai_result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 5. 多源融合判断 -->
+        <mxCell id="step5_title" value="5. 多源融合判断" style="swimlane;horizontal=0;fillColor=#d1ecf1;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#0c5460;" parent="1" vertex="1">
+          <mxGeometry x="0" y="510" width="1600" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="fusion_input1" value="传统幅值判断结果" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1ecf1;strokeColor=#0c5460;align=center;" parent="1" vertex="1">
+          <mxGeometry x="120" y="580" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fusion_input2" value="AI异常检测结果" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1ecf1;strokeColor=#0c5460;align=center;" parent="1" vertex="1">
+          <mxGeometry x="520" y="580" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fusion_logic" value="融合决策逻辑&#xa;• 逻辑与(AND)&#xa;• 逻辑或(OR)&#xa;• 加权融合" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1ecf1;strokeColor=#0c5460;align=center;" parent="1" vertex="1">
+          <mxGeometry x="320" y="580" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="fusion_result" value="融合后异常状态&#xa;□ 异常  □ 正常" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1ecf1;strokeColor=#0c5460;align=center;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="720" y="580" width="160" height="50" as="geometry" />
+        </mxCell>
+ 
+        <!-- 连接线 -->
+        <mxCell id="arrow5a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="fusion_input1" target="fusion_logic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="fusion_input2" target="fusion_logic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="fusion_logic" target="fusion_result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 6. 时序聚合逻辑 -->
+        <mxCell id="step6_title" value="6. 时序聚合逻辑" style="swimlane;horizontal=0;fillColor=#e4b9c0;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#843534;" parent="1" vertex="1">
+          <mxGeometry x="0" y="680" width="1600" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="time_window" value="时序窗口(T-7 ~ T)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e4b9c0;strokeColor=#843534;align=center;" parent="1" vertex="1">
+          <mxGeometry x="40" y="750" width="180" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 6.1 重复检测 -->
+        <mxCell id="repeat_title" value="6.1 重复检测" style="swimlane;horizontal=0;fillColor=#ebccd1;fontSize=12;fontStyle=1;align=left;verticalAlign=middle;spacingTop=5;spacingLeft=10;strokeColor=#843534;" parent="1" vertex="1">
+          <mxGeometry x="40" y="810" width="720" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="repeat_check" value="同一探测器累积异常次数" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ebccd1;strokeColor=#843534;align=center;" parent="1" vertex="1">
+          <mxGeometry x="120" y="860" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="repeat_threshold" value="≥ 重复检测阈值?" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="270" y="865" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="repeat_trigger" value="触发上报" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebccd1;strokeColor=#843534;align=center;" parent="1" vertex="1">
+          <mxGeometry x="320" y="860" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 6.2 报警聚合 -->
+        <mxCell id="agg_title" value="6.2 报警聚合" style="swimlane;horizontal=0;fillColor=#ebccd1;fontSize=12;fontStyle=1;align=left;verticalAlign=middle;spacingTop=5;spacingLeft=10;strokeColor=#843534;" parent="1" vertex="1">
+          <mxGeometry x="760" y="810" width="720" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="agg_check" value="聚合时间内异常次数" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ebccd1;strokeColor=#843534;align=center;" parent="1" vertex="1">
+          <mxGeometry x="840" y="860" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="agg_threshold" value="≥ 报警次数阈值?" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="990" y="865" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="agg_trigger" value="触发报警" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebccd1;strokeColor=#843534;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="860" width="100" height="40" as="geometry" />
+        </mxCell>
+ 
+        <!-- 连接线 -->
+        <mxCell id="arrow6a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="time_window" target="repeat_check">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="time_window" target="agg_check">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="repeat_check" target="repeat_trigger">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6d" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="agg_check" target="agg_trigger">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 7. 故障严重程度评估 -->
+        <mxCell id="step7_title" value="7. 故障严重程度评估" style="swimlane;horizontal=0;fillColor=#ccc;qtip=1;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="0" y="950" width="1600" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="eval_factors" value="评估因子&#xa;• 异常持续时间(时序聚合)&#xa;• 异常幅度/置信度(AI模型)&#xa;• 异常次数" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#333333;align=center;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1020" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eval_decision" value="严重程度判定" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#333333;align=center;" parent="1" vertex="1">
+          <mxGeometry x="300" y="1010" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="severity_levels" value="轻微 / 中等 / 严重" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#333333;align=center;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="480" y="1020" width="140" height="50" as="geometry" />
+        </mxCell>
+ 
+        <!-- 连接线 -->
+        <mxCell id="arrow7a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="eval_factors" target="eval_decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow7b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="eval_decision" target="severity_levels">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 8. 报警输出 -->
+        <mxCell id="step8_title" value="8. 报警输出" style="swimlane;horizontal=0;fillColor=#5cb85c;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#449d44;" parent="1" vertex="1">
+          <mxGeometry x="0" y="1120" width="1600" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alarm_output" value="JSON报警输出&#xa;{&#xa;  &quot;detector_id&quot;: &quot;探测器01&quot;,&#xa;  &quot;timestamp&quot;: &quot;时间戳&quot;,&#xa;  &quot;confidence&quot;: 0.94,&#xa;  &quot;severity&quot;: &quot;严重&quot;,&#xa;  &quot;evidence&quot;: {...}&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5cb85c;strokeColor=#449d44;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1190" width="280" height="150" as="geometry" />
+        </mxCell>
+ 
+        <!-- 主流程连接线 -->
+        <mxCell id="main_arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="preprocess" target="step3_title">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="main_arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="amplitude_result" target="step5_title">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="main_arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="ai_result" target="step5_title">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="main_arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="fusion_result" target="step6_title">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="main_arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="repeat_trigger" target="step7_title">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="935" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="main_arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="agg_trigger" target="step7_title">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1090" y="935" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="main_arrow7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1f77b7;strokeWidth=3;fillColor=#1f77b7;endArrow=classic;startSize=15;" edge="1" parent="1" source="severity_levels" target="step8_title">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+ 
+        <!-- 参数说明区域 -->
+        <mxCell id="param_title" value="参数说明" style="swimlane;horizontal=0;fillColor=#f7f7f9;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1600" y="0" width="800" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="param1" value="重复检测阈值: 同一探测器累积异常次数才会上报(推荐:2-5)" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="50" width="760" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="param2" value="报警聚合: 聚合时间内异常达到设置的报警次数(推荐:5-30秒, 2-5次)" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="90" width="760" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="param3" value="故障严重程度: 轻微/中等/严重 - 基于异常持续时间、置信度、幅值综合评估" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="130" width="760" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="param4" value="置信度阈值: AI模型输出异常分数的可信程度(0-1),用于判断是否异常" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="170" width="760" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="param5" value="传统信号幅度阈值: 过滤未运行工况等安静声音(推荐:0.001-0.01)" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="210" width="760" height="35" as="geometry" />
+        </mxCell>
+ 
+        <!-- 置信度 vs 严重程度 说明 -->
+        <mxCell id="diff_title" value="置信度 vs 严重程度 区别" style="swimlane;horizontal=0;fillColor=#f7f7f9;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1600" y="260" width="800" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="diff_table" value="┌──────────────────┬──────────────────────────────────────┬──────────────────────────┐&#xa;│      维度        │           置信度阈值                │     故障严重程度         │&#xa;├──────────────────┼──────────────────────────────────────┼──────────────────────────┤&#xa;│ 定义             │ AI模型输出异常分数的可信程度        │ 故障对设备运行的影响程度 │&#xa;│ 作用阶段         │ 算法判断阶段(单次检测)             │ 最终决策阶段(综合评估)   │&#xa;│ 取值范围         │ 0~1                                  │ 轻微/中等/严重           │&#xa;│ 物理意义         │ &quot;模型有多少把握认为这是异常&quot;       │ &quot;这个问题危害有多大&quot;     │&#xa;└──────────────────┴──────────────────────────────────────┴──────────────────────────┘" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=9;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;fontFamily=Courier New;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="310" width="760" height="110" as="geometry" />
+        </mxCell>
+ 
+        <!-- 示例说明 -->
+        <mxCell id="example_title" value="示例说明" style="swimlane;horizontal=0;fillColor=#f7f7f9;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1600" y="440" width="800" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="example1" value="• 置信度0.92>阈值0.90 → AI判定异常(高置信度)" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="490" width="760" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="example2" value="  但可能是轻微摩擦 → 判定为&quot;轻微&quot;故障" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=15;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="515" width="760" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="example3" value="• 置信度0.55>阈值0.50 → AI判定异常(低置信度)" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=5;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="545" width="760" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="example4" value="  但多个探测器同时检测强烈振动 → 判定为&quot;严重&quot;故障" style="text;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=15;fontSize=11;whiteSpace=wrap;fillColor=#f7f7f9;strokeColor=#666666;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="570" width="760" height="25" as="geometry" />
+        </mxCell>
+ 
+        <!-- 右侧图例 -->
+        <mxCell id="legend_title" value="图例" style="swimlane;horizontal=0;fillColor=#f7f7f9;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;spacingTop=8;spacingLeft=15;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1600" y="620" width="800" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9edf7;strokeColor=#31708f;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="675" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1_text" value="数据采集" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1650" y="675" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff0d8;strokeColor=#3c763d;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1740" y="675" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2_text" value="预处理" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1780" y="675" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcf8e3;strokeColor=#8a6d3b;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="705" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3_text" value="传统方法" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1650" y="705" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2dede;strokeColor=#a94442;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1740" y="705" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend4_text" value="AI方法" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1780" y="705" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d1ecf1;strokeColor=#0c5460;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="735" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend5_text" value="融合决策" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1650" y="735" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend6" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5cb85c;strokeColor=#449d44;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1740" y="735" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend6_text" value="输出" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1780" y="735" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend7" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="765" width="30" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="legend7_text" value="判断/决策" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1650" y="767" width="80" height="20" as="geometry" />
+        </mxCell>
+ 
       </root>
     </mxGraphModel>
   </diagram>
